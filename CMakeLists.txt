@@ -3,4 +3,6 @@ project(transazioni_finanziarie)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(transazioni_finanziarie main.cpp)
+add_executable(transazioni_finanziarie main.cpp
+        Transazione.cpp
+        Transazione.h)
