@@ -4,16 +4,19 @@
 
 
 int main() {
-    ContoCorrente mioConto("Franc Shala");
+    ContoCorrente conto("Franc Shala");
 
-    mioConto.aggiungiTransazione(Transazione(1000.0, "deposito", "2025-09-01", "Stipendio mensile"));
-    mioConto.aggiungiTransazione(Transazione(200.0, "prelievo", "2025-09-05", "Spesa alimentare"));
-    mioConto.aggiungiTransazione(Transazione(150.0, "prelievo", "2025-09-10", "Pagamento bollette"));
+    conto.aggiungiTransazione(Transazione(1000, "deposito", "2025-09-01", "Stipendio mensile"));
+    conto.aggiungiTransazione(Transazione(200, "prelievo", "2025-09-05", "Spesa alimentare"));
+    conto.aggiungiTransazione(Transazione(150, "prelievo", "2025-09-10", "Pagamento bollette"));
 
-    std::cout << "Intestatario: " << mioConto.getIntestatario() << std::endl;
-    std::cout << "Saldo attuale: " << mioConto.getSaldo() << "euro" << std::endl;
+    std::cout << "Intestatario: " << conto.getIntestatario() << "\n";
+    std::cout << "Saldo attuale: " << conto.getSaldo() << " euro\n";
+    std::cout << "Transazioni:\n" << conto.visualizzaTransazioni() << std::endl;
 
-    std::cout << "Transazioni:\n" << mioConto.visualizzaTransazioni() << std::endl;
+    conto.salvaSuFileEApri("conto_corrente.txt");
+
+    conto.leggiDaFile("conto_corrente.txt");
 
     return 0;
 }
