@@ -3,6 +3,9 @@
 //
 
 #include "ContoCorrente.h"
+#include "fstream"
+#include "cstdlib"
+#include "iostream"
 
 ContoCorrente::ContoCorrente(const std::string &nome) : intestatario(nome){}
 
@@ -36,4 +39,39 @@ std::string ContoCorrente::visualizzaTransazioni() const {
         risultato += t.visualizzaDettagli() + "\n";
     }
     return risultato;
+}
+
+void ContoCorrente::salvaSuFile(const std::string &nomeFile) const {
+    std::ofstream file(nomeFile);
+    if (file.is_open()) {
+        file << "Intestatario: " << intestatario << "\n";
+        file << "Saldo attuale: " << getSaldo() << " euro\n";
+        file << "Transazioni:\n";
+        for (const auto &t : transazioni) {
+            file << t.visualizzaDettagli() << "\n";
+        }
+        file.close();
+    } else {
+        std::cout << "Errore nell'apertura del file!" << std::endl;
+    }
+}
+
+void ContoCorrente::salvaSuFileEApri(const std::string &nomeFile) const {
+    salvaSuFile(nomeFile);
+    system(("notepad " + nomeFile).c_str());
+}
+
+void ContoCorrente::leggiDaFile(const std::string& nomeFile) const {
+    std::ifstream file(nomeFile);
+    if (!file.is_open()) {
+        std::cerr << "Errore: impossibile aprire il file " << nomeFile << std::endl;
+        return;
+    }
+
+    std::string riga;
+    std::cout << "\n--- Dati caricati da file ---\n";
+    while (std::getline(file, riga)) {
+        std::cout << riga << std::endl;
+    }
+    file.close();
 }

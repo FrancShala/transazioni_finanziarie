@@ -12,10 +12,9 @@
 class ContoCorrente {
 private:
     std::string intestatario;
-    std::vector<Transazione> transazioni; // vettore di transazioni
+    std::vector<Transazione> transazioni;
 
 public:
-    // Costruttore
     ContoCorrente(const std::string &nome);
 
     void aggiungiTransazione(const Transazione &t);
@@ -23,6 +22,10 @@ public:
     std::string getIntestatario() const;
     const std::vector<Transazione>& getTransazioni() const;
     std::string visualizzaTransazioni() const;
+
+    void salvaSuFile(const std::string &nomeFile) const;
+    void salvaSuFileEApri(const std::string &nomeFile) const;
+    void leggiDaFile(const std::string &nomeFile) const;
 };
 
 
