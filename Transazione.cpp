@@ -4,7 +4,6 @@
 
 #include "Transazione.h"
 
-// inizializza i membri della classe
 Transazione::Transazione(double importo, const std::string &tipo, const std::string &data, const std::string &descrizione) : importo(importo), tipo(tipo), data(data), descrizione(descrizione) {}
 
 double Transazione::getImporto() const {return importo;}
